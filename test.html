@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Sprites: Test Sheet</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    html, body {
+      font-size: 10px;
+      margin: 0;
+      height: 100%;
+    }
+    html {
+      overflow: hidden;
+
+    }
+    body {
+      padding: 0 20px;
+    }
+    * {
+      font-family: sans-serif;
+      color: rgba(0,0,0,0.9);
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 300;
+    }
+    h1 {
+      font-size: 3em;
+    }
+    ::selection {
+      color: white;
+      background: rgba(0,0,0,0.9);
+    }
+    header {
+      position: relative;
+    }
+    header div,
+    header button {
+      font-size: 2em;
+      text-shadow: none;
+      border-radius: 2px;
+    }
+    header p,
+    header button {
+      outline: none;
+    }
+    span:focus ~ button:before,
+    span.active ~ button:before {
+      color: rgba(0,0,0,0.8);
+    }
+    header div {
+      margin-right: 165px;
+      position: relative;
+      padding: 7px 22px;
+    }
+    header p {
+      margin: 0;
+      outline: none;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    header p br {
+      display:none;
+    }
+    header p * {
+      display:inline;
+      white-space:nowrap;
+    }
+    header p:before {
+      content: "/path";
+      position: absolute;
+      font-size: 1.25em;
+      padding: 6px 8px;
+      color: rgba(0,0,0,0.35);
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: block;
+      box-sizing: border-box;
+      border: 2px solid rgba(0,0,0,0.1);
+      border-radius: 2px;
+      line-height: 0.85em;
+    }
+    header p:focus:before,
+    header p.active:before {
+      color: rgba(0,0,0,0.9);
+      content: "/";
+    }
+    header p:focus:before,
+    header p:hover:before,
+    header p.active:before {
+      border-color: rgba(0,0,0,0.9);
+    }
+    button,
+    nav a {
+      margin: 0;
+      float: right;
+      cursor: pointer;
+      width: 160px;
+      padding: 5px 0;
+      background: rgba(0,0,0,0.9);
+      color: white;
+      border: 2px solid rgba(0,0,0,0.9);
+    }
+    button:hover,
+    button:focus,
+    nav a:hover,
+    nav a:focus,
+    nav li.active a {
+      background: white;
+      color: rgba(0,0,0,0.9);
+    }
+    body > h2 {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    main {
+      display: none;
+      height: 100%;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 -4px;
+      overflow: hidden;
+      z-index: 1;
+      position: relative;
+      border-left: 2px solid rgba(0,0,0,0.9);
+      border-right: 2px solid rgba(0,0,0,0.9);
+      display: inline-block;
+    }
+    li {
+      float: left;
+      font-size: 1.6em;
+    }
+    nav a {
+      text-align: center;
+      text-decoration: none;
+      border-radius: 0;
+      margin: 0 -2px;
+    }
+    nav li.active a {
+      border-bottom-color: white;
+    }
+    @media (max-width: 767px) {
+      header div {
+        margin-right: 62px;
+      }
+      header button {
+        width: 60px;
+      }
+      ul {
+        display: flex;
+        flex-flow: column;
+      }
+      li {
+        float: none;
+        margin-bottom: -2px;
+        order: 1;
+      }
+      li.active {
+        order: 2;
+      }
+      nav a {
+        width: auto;
+        display: block;
+        float: none;
+      }
+    }
+    article {
+      box-sizing: border-box;
+      display: none;
+      border: 2px solid rgba(0,0,0,0.9);
+      overflow: scroll;
+      height: calc(100% - 200px);
+      padding: 10px;
+    }
+    #images span {
+      width: 11.5%;
+      max-width: 100px;
+      display: block;
+      margin: 1px;
+      float: left;
+    }
+    #images span:before {
+      content: "";
+      display: block;
+      padding-top: 100%;
+    }
+    #sprites h2 {
+      border-bottom: 2px solid black;
+      padding-bottom: 0.2em;
+      font-weight: 500;
+    }
+    pre {
+      position: relative;
+      background-color: none;
+      border: 1px solid rgba(0,0,0,0.1);
+      padding: 10px 20px;
+      margin: 0;
+      font-size: 1.4em;
+    }
+    .json-key {
+      color: rgba(0,0,0,0.9);
+      font-weight: 600;
+    }
+    .json-value {
+      color: blue;
+    }
+    .json-string {
+      color: green;
+    }
+    .json-array {
+      margin-top: -1em;
+      width: 15px;
+      height: 1em;
+      overflow: hidden;
+      display: inline-block;
+      cursor: pointer;
+    }
+    .json-array:before {
+      content: "...";
+      display: inline-block;
+      color: red;
+      width: 15px;
+      text-align: center;
+    }
+    .json-array:hover:before {
+      content: "+";
+    }
+    .json-array.active {
+      width: auto;
+      height: auto;
+      overflow: visible;
+      display: block;
+      position: relative;
+      z-index: 1;
+      margin-bottom: -1em;
+    }
+    .json-array.active:before {
+      display: none;
+    }
+    .json-array.active:hover:before {
+      position: absolute;
+      left: -0.5em;
+      margin-top: -1px;
+      content: "[-]";
+      display: block;
+    }
+    main.active,
+    article:target {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Sprites: Test Sheet</h1>
+    <button>Test</button>
+    <div>
+      <p contenteditable></p>
+    </div>
+  </header>
+
+  <h2></h2>
+
+  <main class="inactive">
+    <nav>
+      <ul>
+        <li><a href="#images">images</a></li>
+        <li><a href="#sprites">sprites</a></li>
+        <li><a href="#raw">&lt; raw &gt;</a></li>
+      </ul>
+    </nav>
+    <article id="images">
+      images
+    </article>
+    <article id="sprites">
+      sprites
+    </article>
+    <article id="raw">
+      <iframe></iframe>
+    </article>
+  </main>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script>
+    var $input = $('header p'),
+    $button = $('header button'),
+    $tabs = $('nav li'),
+    $result = $("body > h2"),
+    $main = $('main'),
+    $images = $('#images'),
+    $sprites = $('#sprites'),
+    $raw = $('#raw'),
+    inputValue = $input.text(),
+    base = location.href.replace(/[^/]+$/, "");
+
+    $button.on('click', function (e) {
+      e.preventDefault();
+      $button.blur();
+      localStorage.setItem('query', $input.text());
+
+      var url = base + $input.text();
+      $.get(url, function (e) {
+        console.log(e.data)
+        $result.html(e.success ? 'Path: <a href="' + url + '">' + url + '</a>'  : e.data);
+        $main.toggleClass('active', e.success);
+        if(!e.success) return;
+        $raw.html('<pre>' + pretty.json(e.data) + '</pre>');
+        $images.empty();
+        $sprites.empty();
+        $.each(e.data.sheet_paths, function (i, v) {
+          $sprites.append('<div><h2>Sheet: ' + v + '</h2><img src="' + v + '"></div>');
+        });
+        $.each(e.data.sheets, function (i, v) {
+          $('<style>span[data-sheet="' + i + '"]{background:url(' + e.data.sheet_paths[i] + ');background-size:' + (e.data.mod * 100) + '%;}</style>').appendTo('head');
+          $.each(v, function (ii, vv) {
+            var img = getImage(vv, ii, e.data.mod, e.data.size, i);
+            console.log(i*e.data.mod*e.data.mod + ii, e.data.count)
+            if(i*e.data.mod*e.data.mod + ii > e.data.count) img.css({border: '1px solid red'})
+            $images.append(img)
+          });
+        });
+        if(!e.data.count) $images.html("<h2>Try entering a path above.</h2>");
+      });
+    });
+
+    $input.on("input", function () {
+      var val = $(this).text();
+      $input.html(val).toggleClass('active', !!val);
+      if(Math.abs(inputValue.length - val.length)>1) document.execCommand('selectAll', false, null);
+      inputValue = val;
+    })
+    .on('keydown', function (e) {
+      if(e.keyCode!==13) return;
+      e.preventDefault();
+      $button.click();
+    })
+    .on('focus', function () {
+      $input.one('mouseup', function () {
+        document.execCommand('selectAll', false, null);
+        return false;
+      });
+    });
+
+    $tabs.on("click", function () {
+      setTimeout(function () {
+        $('html,body').scrollTop(0);
+        $tabs.removeClass('active').find('a').filter('[href=' + window.location.hash + ']').parent().addClass('active');
+      }, 0)
+    })
+    .eq(0).click();
+
+    var query = localStorage.getItem('query', $input.text());
+    if(query){
+      $input.text(query).trigger('input');
+      $button.click();
+    }
+
+    $raw.on('click', '.json-array', function (e) {
+      $(this).toggleClass('active');
+      return false;
+    });
+
+    var pretty = {
+      replacer: function (match, pIndent, pKey, pVal, pEnd) {
+        var key = '<span class=json-key>';
+        var val = '<span class=json-value>';
+        var str = '<span class=json-string>';
+        var r = pIndent || '';
+        if (pKey)
+           r = r + key + pKey.replace(/[": ]/g, '') + '</span>: ';
+        if (pVal)
+           r = r + (pVal[0] == '"' ? str : val) + pVal + '</span>';
+        return r + (pEnd || '');
+      },
+      json: function (obj) {
+        var jsonLine = /^( *)("[\S]+": )?("[^"]*"|[\w.+-]*)?([,[{])?$/mg;
+        return JSON.stringify(obj, null, 3)
+        .replace(/&/g, '&amp;').replace(/\\"/g, '&quot;')
+        .replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(jsonLine, this.replacer)
+        .replace(/(\[)/g, "[<div class='json-array'>")
+        .replace(/\]/g, "</div>]");
+      }
+    };
+
+    function getImage(src, i, mod, size, ii) {
+      var d = 100/(mod - 1),
+      x = (i % mod) * d,
+      y = Math.floor(i/mod) * d;
+      return $('<span />').css({
+        backgroundPosition: x + '% ' + y + '%'
+      }).attr('data-src', src).attr('data-sheet', ii);
+    }
+  </script>
+</body>
+</html>
